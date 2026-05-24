@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 
+import tailwindcss from '@tailwindcss/vite';
+
 export default defineConfig({
   site: 'https://a84ff1ae.cackalacky-craft.pages.dev',
   output: 'static',
@@ -7,5 +9,7 @@ export default defineConfig({
     css: {
       devSourcemap: true,
     },
+
+    plugins: [tailwindcss()],
   },
 });
