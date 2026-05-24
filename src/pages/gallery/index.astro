@@ -8,39 +8,53 @@ const products = await sanityClient.fetch(`
     slug,
     price,
     "images": images[].asset->url,
-    woodType
+    woodType,
+    category
   }
 `);
 ---
 
 <Layout title="Gallery - Cackalacky Craft">
 
-  <div class="container py-16">
-    <h1 class="text-5xl font-heading text-center mb-4">Our Collection</h1>
-    <p class="text-xl text-center text-dark/70 mb-16">Each piece is made by hand with care and attention to detail.</p>
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    
+    <div class="text-center mb-16">
+      <h1 class="text-6xl font-heading text-primary mb-4">Our Collection</h1>
+      <p class="text-xl text-dark/70 max-w-2xl mx-auto">
+        Carefully handcrafted pieces made with love in the Carolinas
+      </p>
+    </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <!-- Gallery Grid - Relaxed & Centered -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
       {products.map((product: any) => (
-        <a href={`/gallery/${product.slug?.current}`} class="card group">
-          <div class="aspect-[4/3] bg-gray-200 overflow-hidden">
+        <a 
+          href={`/gallery/${product.slug?.current}`}
+          class="group"
+        >
+          <div class="aspect-[4/3] bg-gray-100 rounded-3xl overflow-hidden mb-6 shadow-sm">
             {product.images?.[0] ? (
               <img 
-                src={urlFor(product.images[0]).width(600).height(450).fit('crop').url()} 
+                src={urlFor(product.images[0]).width(700).height(525).fit('crop').url()} 
                 alt={product.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center text-gray-400">Image coming soon</div>
             )}
           </div>
-          <div class="p-8">
-            <h3 class="text-2xl font-medium mb-3">{product.title}</h3>
+
+          <div class="px-2">
+            <h3 class="text-2xl font-medium mb-2 leading-tight">{product.title}</h3>
             <p class="text-accent1 font-semibold text-3xl">${product.price}</p>
-            {product.woodType && <p class="text-sm text-dark/70 mt-4">• {product.woodType}</p>}
+            {product.woodType && (
+              <p class="text-sm text-dark/60 mt-3">Handcrafted in {product.woodType}</p>
+            )}
           </div>
         </a>
       ))}
     </div>
+
   </div>
 
 </Layout>
