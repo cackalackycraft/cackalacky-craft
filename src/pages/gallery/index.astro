@@ -1,25 +1,48 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { sanityClient } from '../../lib/sanity';
+import { sanityClient, urlFor } from '../../lib/sanity';
 
 const products = await sanityClient.fetch(`
-  *[_type == "product"] {
-    _id,
-    _createdAt,
+  *[_type == "product"] | order(featured desc, _createdAt desc) {
     title,
     slug,
-    price
+    price,
+    images,
+    woodType,
+    finish
   }
 `);
-
-console.log("=== FINAL DEBUG ===");
-console.log("Total products:", products.length);
-console.log("Raw data:", JSON.stringify(products, null, 2));
 ---
 
 <Layout title="Gallery - Cackalacky Craft">
-  <div class="max-w-7xl mx-auto px-6 py-20 text-center">
-    <h1 class="text-5xl font-heading">Gallery Debug</h1>
-    <p class="mt-8">Products found: {products.length}</p>
+
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <h1 class="text-5xl font-heading text-primary mb-4 text-center">Our Collection</h1>
+    <p class="text-xl text-center text-dark/70 mb-16">Each piece is made by hand with care and attention to detail.</p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {products.map((product: any) => (
+        <a href={`/gallery/${product.slug?.current}`} class="card group">
+          <div class="aspect-[4/3] bg-gray-200 overflow-hidden">
+            {product.images?.[0] ? (
+              <img 
+                src={urlFor(product.images[0]).width(600).height(450).fit('crop').quality(75).url()} 
+                alt={product.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center text-gray-400">No image</div>
+            )}
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-medium mb-2">{product.title}</h3>
+            <p class="text-accent1 font-semibold text-2xl">${product.price}</p>
+            {product.woodType && <p class="text-sm text-dark/70 mt-2">• {product.woodType}</p>}
+          </div>
+        </a>
+      ))}
+    </div>
   </div>
+
 </Layout>
