@@ -6,7 +6,7 @@ import SocialIcons from './SocialIcons.astro';
   <div class="header-inner">
     <!-- Logo -->
     <a href="/" class="logo">
-      <div class="w-11 h-11 bg-[#5c3a2a] rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
+      <div class="w-10 h-10 bg-[#5c3a2a] rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
         CC
       </div>
       <div>
@@ -16,16 +16,16 @@ import SocialIcons from './SocialIcons.astro';
     </a>
 
     <!-- Navigation -->
-    <nav class="nav-links hidden md:flex">
+    <nav class="nav-links hidden md:flex items-center">
       <a href="/gallery">Gallery</a>
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
+      <a href="https://square.link/your-store" target="_blank" class="btn ml-6">Shop Now</a>
     </nav>
 
-    <!-- Right Side -->
-    <div class="flex items-center gap-6">
-      <SocialIcons />
-      <a href="https://square.link/your-store" target="_blank" class="btn">Shop Now</a>
+    <!-- Mobile Menu Button (if needed later) -->
+    <div class="md:hidden">
+      <!-- We'll add hamburger later if you want -->
     </div>
   </div>
 </header>

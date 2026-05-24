@@ -1,4 +1,8 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-family: 'Montserrat', system-ui, sans-serif;
@@ -9,27 +13,28 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'ChunkFive Print', serif;
-  font-weight: 400;
 }
 
-/* Header */
+/* Header - More compact */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: #F5F0E1;
-  border-bottom: 1px solid #5c3a2a20;
+  background-color: rgba(245, 240, 225, 0.98);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #5c3a2a15;
 }
 
 .header-inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -38,52 +43,37 @@ header {
   color: inherit;
 }
 
+/* Navigation */
 .nav-links a {
-  margin: 0 1.5rem;
-  text-decoration: none;
   color: #5c3a2a;
+  text-decoration: none;
+  margin: 0 1.25rem;
   font-weight: 500;
+  transition: all 0.2s;
 }
 
 .nav-links a:hover {
   color: #8A9A5B;
+  text-decoration: underline;
+  text-underline-offset: 6px;
 }
 
 /* Buttons */
 .btn {
   background-color: #5c3a2a;
   color: white;
-  padding: 12px 32px;
+  padding: 10px 24px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 500;
-  display: inline-block;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
 }
 
 .btn:hover {
   background-color: #8A9A5B;
-  transform: translateY(-2px);
 }
 
-/* Cards */
-.card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  transition: all 0.4s ease;
-}
-
-.card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-}
-
-/* Footer */
-footer {
-  background-color: #5c3a2a;
-  color: white;
-  padding: 3rem 0 2rem;
-  text-align: center;
+/* Content padding */
+main {
+  padding-top: 2rem;
 }
