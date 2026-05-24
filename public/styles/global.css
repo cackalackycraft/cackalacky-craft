@@ -1,42 +1,65 @@
-/* Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Montserrat', system-ui, sans-serif;
   background-color: #F5F0E1;
   color: #3C3C3C;
+  line-height: 1.6;
 }
 
-h1, h2, h3, h4, .font-heading {
+h1, h2, h3, h4 {
   font-family: 'ChunkFive Print', serif;
 }
 
-/* Colors */
-.bg-primary { background-color: #5c3a2a; }
-.text-primary { color: #5c3a2a; }
-.text-accent1 { color: #8A9A5B; }
-.bg-background { background-color: #F5F0E1; }
+/* Header */
+header {
+  background-color: #F5F0E1;
+  border-bottom: 1px solid #5c3a2a20;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav a {
+  color: #5c3a2a;
+  text-decoration: none;
+  margin: 0 1.25rem;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #8A9A5B;
+}
 
 /* Buttons */
 .btn {
   background-color: #5c3a2a;
   color: white;
-  padding: 14px 32px;
+  padding: 12px 28px;
   border-radius: 9999px;
+  text-decoration: none;
   font-weight: 500;
-  text-align: center;
   display: inline-block;
-  transition: all 0.2s;
 }
 
 .btn:hover {
   background-color: #8A9A5B;
 }
 
-/* Links */
-a {
-  color: #5c3a2a;
-  text-decoration: none;
+/* Gallery Cards */
+.product-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s;
 }
 
-a:hover {
-  color: #8A9A5B;
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }

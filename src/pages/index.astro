@@ -2,27 +2,37 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Cackalacky Craft - Handcrafted Woodwork" description="Beautiful, functional woodwork made by hand in the Carolinas.">
+<Layout title="Cackalacky Craft - Handcrafted Woodwork">
 
   <!-- Hero -->
-  <section class="min-h-[90vh] flex items-center justify-center bg-[url('/hero-wood.jpg')] bg-cover bg-center relative">
-    <div class="absolute inset-0 bg-black/40"></div>
-    <div class="relative text-center px-6 max-w-3xl">
-      <h1 class="text-6xl md:text-7xl font-heading text-white mb-6 tracking-tight">
+  <section class="min-h-[85vh] flex items-center justify-center bg-[#5c3a2a] text-white relative">
+    <div class="absolute inset-0 bg-[url('/images/hero-wood.jpg')] bg-cover bg-center opacity-30"></div>
+    <div class="relative text-center px-6 max-w-4xl">
+      <h1 class="text-6xl md:text-7xl font-heading tracking-tight leading-none mb-6">
         Timeless Craft.<br>Carolina Soul.
       </h1>
-      <p class="text-xl text-white/90 mb-10">Handmade wooden furniture and decor built to last generations.</p>
-      <a href="/gallery" class="inline-block bg-accent1 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-primary transition-all">
-        Explore the Collection
-      </a>
+      <p class="text-xl md:text-2xl mb-10 max-w-xl mx-auto">
+        Handcrafted wooden furniture and decor built to last generations.
+      </p>
+      <a href="/gallery" class="btn text-lg px-12 py-4">Explore the Collection</a>
     </div>
   </section>
 
-  <!-- Featured -->
-  <section class="py-20 bg-background">
+  <!-- Featured Works -->
+  <section class="py-20 bg-[#F5F0E1]">
     <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl font-heading text-center mb-12 text-primary">Featured Works</h2>
-      <!-- We'll connect real products later -->
+      <h2 class="text-4xl font-heading text-center mb-12">Featured Works</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Add your products here manually for now -->
+        <div class="product-card">
+          <div class="h-64 bg-gray-300 flex items-center justify-center text-gray-500">Image</div>
+          <div class="p-6">
+            <h3 class="text-xl font-medium">Live Edge Coffee Table</h3>
+            <p class="text-[#8A9A5B] font-semibold text-2xl mt-2">$850</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
