@@ -2,45 +2,45 @@
 import SocialIcons from './SocialIcons.astro';
 ---
 
-<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/10">
+<header class="sticky top-0 z-50 bg-[#F5F0E1] border-b border-[#5c3a2a]/20 shadow-sm">
   <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
     
-    <!-- Left: Logo -->
+    <!-- Logo -->
     <a href="/" class="flex items-center gap-3">
-      <div class="w-11 h-11 bg-primary rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
+      <div class="w-11 h-11 bg-[#5c3a2a] rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
         CC
       </div>
       <div class="leading-none">
-        <span class="text-3xl font-heading tracking-tight text-primary">Cackalacky</span>
-        <span class="text-xl font-heading text-accent1 block -mt-1">Craft</span>
+        <span class="text-3xl font-heading tracking-tight text-[#5c3a2a]">Cackalacky</span>
+        <span class="text-xl font-heading text-[#8A9A5B] block -mt-1">Craft</span>
       </div>
     </a>
 
-    <!-- Center: Navigation -->
-    <nav class="hidden md:flex items-center gap-10 text-lg font-medium">
-      <a href="/gallery" class="hover:text-accent1 transition-colors">Gallery</a>
-      <a href="/about" class="hover:text-accent1 transition-colors">About</a>
-      <a href="/contact" class="hover:text-accent1 transition-colors">Contact</a>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-10 text-lg">
+      <a href="/gallery" class="hover:text-[#8A9A5B]">Gallery</a>
+      <a href="/about" class="hover:text-[#8A9A5B]">About</a>
+      <a href="/contact" class="hover:text-[#8A9A5B]">Contact</a>
     </nav>
 
-    <!-- Right: Social + Shop -->
+    <!-- Right Side -->
     <div class="flex items-center gap-6">
       <SocialIcons class="hidden md:flex" />
       
       <a href="https://square.link/your-store" 
          target="_blank"
-         class="btn px-7 py-3 text-base hidden sm:block">
+         class="bg-[#5c3a2a] text-white px-7 py-3 rounded-full hover:bg-[#8A9A5B] transition-colors">
         Shop Now
       </a>
     </div>
   </div>
 
   <!-- Mobile Navigation -->
-  <div class="md:hidden border-t border-primary/10 bg-background py-4">
-    <nav class="flex justify-center gap-8 text-base font-medium">
-      <a href="/gallery" class="hover:text-accent1">Gallery</a>
-      <a href="/about" class="hover:text-accent1">About</a>
-      <a href="/contact" class="hover:text-accent1">Contact</a>
+  <div class="md:hidden border-t border-[#5c3a2a]/10 bg-[#F5F0E1] py-4">
+    <nav class="flex justify-center gap-8 text-base">
+      <a href="/gallery" class="hover:text-[#8A9A5B]">Gallery</a>
+      <a href="/about" class="hover:text-[#8A9A5B]">About</a>
+      <a href="/contact" class="hover:text-[#8A9A5B]">Contact</a>
     </nav>
   </div>
 </header>
