@@ -1,11 +1,29 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Cackalacky Craft - Handcrafted Woodwork" description="Beautiful, functional woodwork made by hand in the Carolinas.">
+
+  <!-- Hero -->
+  <section class="min-h-[90vh] flex items-center justify-center bg-[url('/hero-wood.jpg')] bg-cover bg-center relative">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative text-center px-6 max-w-3xl">
+      <h1 class="text-6xl md:text-7xl font-heading text-white mb-6 tracking-tight">
+        Timeless Craft.<br>Carolina Soul.
+      </h1>
+      <p class="text-xl text-white/90 mb-10">Handmade wooden furniture and decor built to last generations.</p>
+      <a href="/gallery" class="inline-block bg-accent1 text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-primary transition-all">
+        Explore the Collection
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured -->
+  <section class="py-20 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-heading text-center mb-12 text-primary">Featured Works</h2>
+      <!-- We'll connect real products later -->
+    </div>
+  </section>
+
 </Layout>

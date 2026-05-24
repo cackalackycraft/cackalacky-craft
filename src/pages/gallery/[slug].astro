@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { sanityClient } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  const products = await sanityClient.fetch(`
+    *[_type == "product"] { slug }
+  `);
+
+  return products.map((product: any) => ({
+    params: { slug: product.slug?.current }
+  }));
+}
+
+const { slug } = Astro.params;
+
+const product = await sanityClient.fetch(`
+  *[_type == "product" && slug.current == $slug][0] {
+    title,
+    slug,
+    price,
+    "images": images[].asset->url,
+    description,
+    story,
+    woodType,
+    finish,
+    materials,
+    dimensions,
+    careInstructions,
+    inStock,
+    shippingAvailable,
+    localPickupOnly,
+    isCustomizable
+  }
+`, { slug });
+---
+
+<Layout 
+  title={product ? `${product.title} - Cackalacky Craft` : "Product Not Found"}
+>
+  <!-- (keep the rest of the page the same as before) -->
+</Layout>

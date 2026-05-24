@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { sanityClient } from '../../lib/sanity';
+
+const products = await sanityClient.fetch(`
+  *[_type == "product"] {
+    _id,
+    _createdAt,
+    title,
+    slug,
+    price
+  }
+`);
+
+console.log("=== FINAL DEBUG ===");
+console.log("Total products:", products.length);
+console.log("Raw data:", JSON.stringify(products, null, 2));
+---
+
+<Layout title="Gallery - Cackalacky Craft">
+  <div class="max-w-7xl mx-auto px-6 py-20 text-center">
+    <h1 class="text-5xl font-heading">Gallery Debug</h1>
+    <p class="mt-8">Products found: {products.length}</p>
+  </div>
+</Layout>

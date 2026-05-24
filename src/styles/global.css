@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ChunkFive Print */
+@font-face {
+  font-family: 'ChunkFive Print';
+  src: url('/fonts/ChunkFivePrint.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Typography */
+body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'ChunkFive Print', serif;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+/* Links */
+a {
+  color: #5c3a2a;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+a:hover {
+  color: #8A9A5B;
+}
+
+/* Custom Button using plain CSS instead of @apply */
+.btn {
+  background-color: #5c3a2a;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #8A9A5B;
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}

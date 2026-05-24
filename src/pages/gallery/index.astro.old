@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { sanityClient } from '../../lib/sanity.ts';
+
+const products = await sanityClient.fetch(`
+  *[_type == "product"] | order(featured desc, title asc) {
+    title,
+    slug,
+    price,
+    "images": images[].asset->url,
+    woodType,
+    finish,
+    materials,
+    dimensions,
+    description,
+    inStock,
+    shippingAvailable,
+    localPickupOnly,
+    featured
+  }
+`);
+---
+
+<Layout title="Gallery - Cackalacky Craft">
+
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <h1 class="text-5xl font-heading text-primary mb-4 text-center">Our Collection</h1>
+    <p class="text-xl text-center text-dark/70 mb-16">Timeless handcrafted woodwork made in the Carolinas.</p>
+
+    {products.length === 0 ? (
+      <div class="text-center py-24">
+        <p class="text-2xl text-dark/60">No products yet.</p>
+        <a href="https://cackalacky.sanity.studio" target="_blank" class="mt-6 inline-block text-accent1 underline">
+          Add products in Sanity Studio →
+        </a>
+      </div>
+    ) : (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {products.map((product: any) => (
+          <a 
+            href={`/gallery/${product.slug?.current}`}
+            class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all"
+          >
+            <div class="aspect-[4/3] bg-gray-100 overflow-hidden">
+              {product.images?.[0] ? (
+                <img 
+                  src={product.images[0]} 
+                  alt={product.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">Image coming soon</div>
+              )}
+            </div>
+            
+            <div class="p-6">
+              <h3 class="text-xl font-medium mb-2 line-clamp-2">{product.title}</h3>
+              <p class="text-accent1 font-semibold text-2xl mb-3">${product.price}</p>
+              
+              {product.woodType && (
+                <p class="text-sm text-dark/70">Handcrafted in {product.woodType}</p>
+              )}
+              {product.finish && (
+                <p class="text-sm text-dark/60 mt-1">Finish: {product.finish}</p>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+
+</Layout>

@@ -1,0 +1,52 @@
+---
+import SocialIcons from './SocialIcons.astro';
+---
+
+<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/10">
+  <div class="max-w-7xl mx-auto px-6 py-6">
+
+    <!-- Top Bar -->
+    <div class="flex items-center justify-between mb-8">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary rounded-2xl flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+          CC
+        </div>
+        <div class="leading-none">
+          <span class="text-3xl font-heading tracking-tight text-primary">Cackalacky</span>
+          <span class="text-xl font-heading text-accent1 block -mt-1">Craft</span>
+        </div>
+      </a>
+
+      <!-- Social + Shop -->
+      <div class="flex items-center gap-6">
+        <SocialIcons class="hidden md:flex" />
+        
+        <a href="https://square.link/your-store" 
+           target="_blank"
+           class="btn px-7 py-3 text-base hidden sm:block">
+          Shop Now
+        </a>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation - FORCED SPACING -->
+    <nav class="hidden md:flex justify-center">
+      <div class="flex gap-16 text-lg font-medium" style="gap: 5rem !important;">
+        <a href="/gallery" class="hover:text-accent1 transition-colors px-8">Gallery</a>
+        <a href="/about" class="hover:text-accent1 transition-colors px-8">About</a>
+        <a href="/contact" class="hover:text-accent1 transition-colors px-8">Contact</a>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="md:hidden border-t border-primary/10 bg-background">
+    <nav class="flex justify-center gap-12 py-5 text-base font-medium">
+      <a href="/gallery" class="hover:text-accent1">Gallery</a>
+      <a href="/about" class="hover:text-accent1">About</a>
+      <a href="/contact" class="hover:text-accent1">Contact</a>
+    </nav>
+  </div>
+</header>
