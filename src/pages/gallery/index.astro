@@ -8,25 +8,24 @@ const products = await sanityClient.fetch(`
     slug,
     price,
     "images": images[].asset->url,
-    woodType,
-    category
+    woodType
   }
 `);
 ---
 
 <Layout title="Gallery - Cackalacky Craft">
 
-  <div class="max-w-7xl mx-auto px-6 py-20">
+  <div class="max-w-7xl mx-auto px-6 py-24">
     
-    <div class="text-center mb-16">
-      <h1 class="text-6xl font-heading text-primary mb-4">Our Collection</h1>
+    <div class="text-center mb-20">
+      <h1 class="text-6xl font-heading text-primary mb-6">Our Collection</h1>
       <p class="text-xl text-dark/70 max-w-2xl mx-auto">
-        Carefully handcrafted pieces made with love in the Carolinas
+        Handcrafted pieces made with care in the Carolinas
       </p>
     </div>
 
-    <!-- Gallery Grid - Relaxed & Centered -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+    <!-- 4 across on large screens -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
       {products.map((product: any) => (
         <a 
           href={`/gallery/${product.slug?.current}`}
@@ -35,26 +34,29 @@ const products = await sanityClient.fetch(`
           <div class="aspect-[4/3] bg-gray-100 rounded-3xl overflow-hidden mb-6 shadow-sm">
             {product.images?.[0] ? (
               <img 
-                src={urlFor(product.images[0]).width(700).height(525).fit('crop').url()} 
+                src={urlFor(product.images[0]).width(420).height(315).fit('crop').quality(75).url()} 
                 alt={product.title}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center text-gray-400">Image coming soon</div>
             )}
           </div>
 
-          <div class="px-2">
-            <h3 class="text-2xl font-medium mb-2 leading-tight">{product.title}</h3>
+          <div class="px-3">
+            <h3 class="text-2xl font-medium mb-3 leading-tight group-hover:text-accent1 transition-colors">
+              {product.title}
+            </h3>
             <p class="text-accent1 font-semibold text-3xl">${product.price}</p>
+            
             {product.woodType && (
-              <p class="text-sm text-dark/60 mt-3">Handcrafted in {product.woodType}</p>
+              <p class="text-sm text-dark/70 mt-4">Handcrafted in {product.woodType}</p>
             )}
           </div>
         </a>
       ))}
     </div>
-
   </div>
 
 </Layout>
