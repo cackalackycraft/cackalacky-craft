@@ -1,39 +1,64 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
+import { sanityClient, urlFor } from '../../lib/sanity';
+
+const products = await sanityClient.fetch(`
+  *[_type == "product"] | order(featured desc, _createdAt desc) {
+    title,
+    slug,
+    price,
+    "images": images[].asset->url,
+    woodType,
+    finish
+  }
+`);
 ---
 
-<Layout title="Cackalacky Craft - Handcrafted Woodwork">
+<Layout title="Gallery - Cackalacky Craft">
 
-  <!-- Hero -->
-  <section class="min-h-[85vh] flex items-center justify-center bg-[#5c3a2a] text-white relative">
-    <div class="absolute inset-0 bg-[url('/images/hero-wood.jpg')] bg-cover bg-center opacity-30"></div>
-    <div class="relative text-center px-6 max-w-4xl">
-      <h1 class="text-6xl md:text-7xl font-heading tracking-tight leading-none mb-6">
-        Timeless Craft.<br>Carolina Soul.
-      </h1>
-      <p class="text-xl md:text-2xl mb-10 max-w-xl mx-auto">
-        Handcrafted wooden furniture and decor built to last generations.
+  <div class="max-w-7xl mx-auto px-6 py-20">
+    
+    <div class="text-center mb-16">
+      <h1 class="text-6xl font-heading text-primary mb-4">Our Collection</h1>
+      <p class="text-xl text-dark/70 max-w-2xl mx-auto">
+        Handcrafted pieces made with care in the Carolinas
       </p>
-      <a href="/gallery" class="btn text-lg px-12 py-4">Explore the Collection</a>
     </div>
-  </section>
 
-  <!-- Featured Works -->
-  <section class="py-20 bg-[#F5F0E1]">
-    <div class="max-w-7xl mx-auto px-6">
-      <h2 class="text-4xl font-heading text-center mb-12">Featured Works</h2>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Add your products here manually for now -->
-        <div class="product-card">
-          <div class="h-64 bg-gray-300 flex items-center justify-center text-gray-500">Image</div>
-          <div class="p-6">
-            <h3 class="text-xl font-medium">Live Edge Coffee Table</h3>
-            <p class="text-[#8A9A5B] font-semibold text-2xl mt-2">$850</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+      {products.map((product: any) => (
+        <a 
+          href={`/gallery/${product.slug?.current}`}
+          class="group"
+        >
+          <!-- Smaller Thumbnail -->
+          <div class="aspect-[4/3] bg-gray-100 rounded-3xl overflow-hidden mb-6 shadow-sm">
+            {product.images?.[0] ? (
+              <img 
+                src={urlFor(product.images[0]).width(500).height(375).fit('crop').quality(75).url()} 
+                alt={product.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center text-gray-400">Image coming soon</div>
+            )}
           </div>
-        </div>
-      </div>
+
+          <!-- Text Area -->
+          <div class="px-2">
+            <h3 class="text-2xl font-medium mb-2 leading-tight group-hover:text-accent1 transition-colors">
+              {product.title}
+            </h3>
+            <p class="text-accent1 font-semibold text-3xl">${product.price}</p>
+            
+            {product.woodType && (
+              <p class="text-sm text-dark/70 mt-4">Handcrafted in {product.woodType}</p>
+            )}
+          </div>
+        </a>
+      ))}
     </div>
-  </section>
+  </div>
 
 </Layout>
