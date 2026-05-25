@@ -5,7 +5,8 @@ export const sanityClient = createClient({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2025-05-24',
-  useCdn: true,
+  useCdn: false,           // ← Changed to false for development
+  token: import.meta.env.PUBLIC_SANITY_TOKEN,
 });
 
 const builder = imageUrlBuilder(sanityClient);
