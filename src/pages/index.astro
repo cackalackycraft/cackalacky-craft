@@ -24,14 +24,14 @@ const products = await sanityClient.fetch(`
       </p>
     </div>
 
-    <!-- 4 across on large screens, 3 on medium, 2 on small -->
+    <!-- Relaxed Grid: 2 on mobile, 3 on tablet, 4 on desktop -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
       {products.map((product: any) => (
         <a 
           href={`/gallery/${product.slug?.current}`}
           class="group"
         >
-          <!-- Smaller Thumbnail -->
+          <!-- Smaller, consistent thumbnail -->
           <div class="aspect-[4/3] bg-gray-100 rounded-3xl overflow-hidden mb-6 shadow-sm">
             {product.images?.[0] ? (
               <img 
@@ -45,7 +45,7 @@ const products = await sanityClient.fetch(`
             )}
           </div>
 
-          <div class="px-3">
+          <div class="px-2">
             <h3 class="text-2xl font-medium mb-3 leading-tight group-hover:text-accent1 transition-colors">
               {product.title}
             </h3>
