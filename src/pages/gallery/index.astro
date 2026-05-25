@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { sanityClient, urlFor } from '../lib/sanity';
+import Layout from '../../layouts/Layout.astro';
+import { sanityClient, urlFor } from '../../lib/sanity';
 
 const products = await sanityClient.fetch(`
   *[_type == "product"] | order(_createdAt desc) {
