@@ -16,13 +16,16 @@ const products = await sanityClient.fetch(`
 <Layout title="Gallery - Cackalacky Craft">
 
   <div class="max-w-7xl mx-auto px-6 py-24">
+    
     <div class="text-center mb-20">
       <h1 class="text-6xl font-heading text-primary mb-6">Our Collection</h1>
-      <p class="text-xl text-dark/70">Handcrafted pieces made with care in the Carolinas</p>
+      <p class="text-xl text-dark/70 max-w-2xl mx-auto">
+        Handcrafted pieces made with care in the Carolinas
+      </p>
     </div>
 
-    <!-- FORCE 4 COLUMNS -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem;">
+    <!-- Clean 4-column grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
       {products.map((product: any) => (
         <a 
           href={`/gallery/${product.slug?.current}`}
@@ -46,7 +49,10 @@ const products = await sanityClient.fetch(`
               {product.title}
             </h3>
             <p class="text-accent1 font-semibold text-3xl">${product.price}</p>
-            {product.woodType && <p class="text-sm text-dark/70 mt-4">Handcrafted in {product.woodType}</p>}
+            
+            {product.woodType && (
+              <p class="text-sm text-dark/70 mt-4">Handcrafted in {product.woodType}</p>
+            )}
           </div>
         </a>
       ))}
